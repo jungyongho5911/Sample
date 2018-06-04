@@ -29,20 +29,17 @@ public class HomeController {
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
-		System.out.println("홈컨트롤러 방문");
 		model.addAttribute("path", context.ptx());
 		model.addAttribute("serverTime", formattedDate );
 		return "index";
 	}
 	@RequestMapping(value = "/move/intro", method = RequestMethod.GET)
 	public String intro(Locale locale, Model model) {
-		logger.info("intro 방문환영.", locale);
 		model.addAttribute("path", context.ptx());
 		return "intro";
 	}
 	@RequestMapping(value="/main/login",method=RequestMethod.GET)
 	public String loginForm(Model model) {
-		System.out.println("로그인 컨트롤러 방문");
 		model.addAttribute("path", context.ptx());
 			return "login.board";
 		

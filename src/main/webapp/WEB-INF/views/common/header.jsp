@@ -10,22 +10,28 @@
       <li class="active"><a id="a_structure" href="#">HISTORY</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">게시판 <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">자유게시판</a></li>
+          <li><a id="a_board" href="#">자유게시판</a></li>
           <li><a href="#">Page 1-2</a></li>
           <li><a href="#">Page 1-3</a></li>
         </ul>
       </li>
       <li><a href="#">Page 2</a></li>
       <li><a href="#">Page 3</a></li>
-        <li><a id="a_join"  href="#">회원가입</a></li> 
-        <li><a data-toggle="modal" data-target="#myModal" href="#">로그인</a></li>
-        <li><a href="#">로그아웃</a></li>        
+     <c:choose>
+      	<c:when test="${user eq null}">
+         	<li><a id="a_join"  href="#">회원가입</a></li> 
+         	<li><a data-toggle="modal" data-target="#myModal" href="#">로그인</a></li>
+      	</c:when>
+	  	<c:otherwise>
+	  	 <li><a href="#">로그아웃</a></li>
+	  	</c:otherwise>
+     </c:choose>
+               
     </ul>
   </div>
   <div class="container">
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-    
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -63,7 +69,6 @@
 		.attr('method','post')
 		.attr('enctype','multipart/form-data')
 		.submit();
-		alert('로그인버튼 작동')
 	})
 	$('#a_join').on('click',function(){
 		$('#form_login')
@@ -71,6 +76,13 @@
 		.attr('method','GET')
 		.attr('enctype','multipart/form-data')
 		.submit();
-		alert('로그인버튼 작동')
 	})
+		$('#a_board').on('click',function(){
+		$('#form_login')
+		.attr('action','${path.context}/user/board')
+		.attr('method','GET')
+		.attr('enctype','multipart/form-data')
+		.submit();
+	})
+
 </script>

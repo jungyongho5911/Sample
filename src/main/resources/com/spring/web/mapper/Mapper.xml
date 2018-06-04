@@ -2,6 +2,67 @@
 <!DOCTYPE mapper
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.spring.web.mapper.Mapper">
-	<insert id="insertUser"></insert>
+<mapper namespace="com.spirng.web.mapper.Mapper">
+
+<resultMap type="java.util.HashMap" id="customer">
+		<id property="customId" column="custom_id"/>
+		<result property="customPass" column="custom_pass"/>
+		<result property="name" column="name"/>
+		<result property="email" column="email"/>
+		<result property="phoneNum" column="phone_num"/>
+		<result property="joinDate" column="join_date"/>
+</resultMap>
+ 	<resultMap type="com.spring.web.domain.Board" id="board">
+ 		<id property="bbsSeq" column="board_seq"/>
+ 		<result property="title" column="title"/>
+ 		<result property="content" column="content"/>
+ 		<result property="bbsDate" column="board_date"/>
+ 		<result property="customId" column="custom_id"/>
+ 	</resultMap>
+		<select  id="totalPage" resultType="int" parameterType="hashMap">
+			SELECT COUNT(*)
+			  FROM board
+		</select>
+		<select id="articles" resultMap="board" parameterType="com.spring.web.domain.Command">
+		SELECT 	a.*
+       	  FROM 
+	   (SELECT
+				@rownum := @rownum +1 As rownum, t.*
+	      FROM  (SELECT board_seq AS bbsSeq, title, content, board_date as bbsDate, custom_id as customId
+		  FROM   board
+	  order by   bbsSeq desc) t,
+		(SELECT @rownum:=0) tmp)  a
+         WHERE rownum between #{data1} and #{data2}
+		</select>  
+		<insert id="insertUser" parameterType="com.spring.web.domain.Command">
+			INSERT 
+			  INTO customer
+				  (
+				   custom_id
+				  ,custom_pass
+				  ,name
+				  ,email
+				  ,phone_num
+				  ,join_date
+				  )
+			  
+		    VALUES(
+		           #{customer.customId}
+		          ,#{customer.customPass}
+		          ,#{customer.name}
+		          ,#{customer.email}
+		          ,#{customer.phoneNum}
+		          ,now()
+		    )
+	</insert>
+	<select id="selectMypage" resultMap="customer" parameterType="hashMap">
+			SELECT  custom_id as customid
+			      , name
+			      , email
+			      , phone_num as phoneNum
+			      , join_date as joinDate
+			  FROM customer
+			 WHERE custom_id = #{userid}
+			   AND custom_pass = #{userPass}  
+	</select>
 </mapper>

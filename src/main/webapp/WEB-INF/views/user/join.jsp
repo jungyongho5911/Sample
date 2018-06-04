@@ -15,6 +15,12 @@
 	<div >
 		<input style="width: 250px; height: 50px;" type="password" name="input_join_pass" placeholder="Pass를 입력하세요" />
 	</div>
+	<div style="margin-top: 20px;">
+		<h4>Name : </h4>
+	</div>
+	<div >
+		<input style="width: 250px; height: 50px;" type="text" name="input_join_name" placeholder="Name를 입력하세요" />
+	</div>
 	
 	<div style="margin-top: 20px;">
 		<h4>Email:</h4>
