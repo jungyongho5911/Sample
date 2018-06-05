@@ -79,7 +79,7 @@
 	})
 		$('#a_board').on('click',function(){
 		$('#form_login')
-		.attr('action','${path.context}/user/board')
+		.attr('action','${path.context}/user/board1')
 		.attr('method','GET')
 		.attr('enctype','multipart/form-data')
 		.submit();

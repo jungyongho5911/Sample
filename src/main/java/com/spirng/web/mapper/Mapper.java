@@ -13,6 +13,6 @@ public interface Mapper {
 		 public void insertUser(Command cmd);
 		 public HashMap<?,?> selectMypage(HashMap<?, ?> param);
 		 public int totalPage(HashMap<?, ?> param);
-		 public List<Board> articles(Command cmd);
- 			 
+		 public List<Board> selectAll(Command cmd);
+		 public int boardExist(Command cmd);	 
 }

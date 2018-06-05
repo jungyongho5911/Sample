@@ -8,7 +8,7 @@ app = (()=>{
 	};
 	return {init:init};
 })();
-app.board =(x=>{
+app.board = (()=>{
 	var $context, view, image;
 	var onCreate =()=>{
 		context = $.context();
@@ -17,8 +17,17 @@ app.board =(x=>{
 		setContentView();
 	};
 	var setContentView =()=>{
-
+			list(1);
+	};
+	var list = x =>{
+		    alert('작동함0')
+		$.getJSON(context+'/user/board' ,function(){
+		    $.getScript(view,()=>{
+		    	alert('작동함1')
+		    })
+		});
+		
 	};
 	
-	return {onCreate: onCreate};
-})();
+	return {onCreate: onCreate,list:list};
+})()

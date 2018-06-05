@@ -62,7 +62,7 @@ public class LoginController {
 		model.addAttribute("path", context.ptx());
 		return "user.join";
 	}
-	@RequestMapping(value = "/user/board", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/board1", method = RequestMethod.GET)
 	public String userBoard(Locale locale, Model model) {
 		logger.info("유저보드 게시판 환영.", locale);
 		model.addAttribute("path", context.ptx());

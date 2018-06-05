@@ -65,4 +65,14 @@
 			 WHERE custom_id = #{userid}
 			   AND custom_pass = #{userPass}  
 	</select>
+	<select id="boardExist" resultType="int" parameterType="com.spring.web.domain.Command">
+	  	SELECT COUNT(*) FROM board
+	</select>
+		<select id="selectAll" resultType="com.spring.web.domain.Board" parameterType="com.spring.web.domain.Command">
+		SELECT A2.* FROM(
+				SELECT @RNUM := @RNUM + 1 AS ROWNUM, A.* 
+				FROM board A, 
+					(SELECT @RNUM :=0) R ) A2
+		 WHERE ROWNUM between #{data1} and #{data2}
+	</select>
 </mapper>

@@ -1,15 +1,10 @@
 package com.spring.web.service;
 
-
-
 import org.springframework.stereotype.Service;
 
 import com.spring.web.domain.Command;
 
-
-@Service @FunctionalInterface
-public interface IGetService1 {
-	public Object excute(Command cmd);
-	
-
+@Service
+public interface ICountService {
+	public int excute(Command cmd);
 }
